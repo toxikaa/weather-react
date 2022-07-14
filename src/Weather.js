@@ -8,24 +8,60 @@ export default function Weather() {
   const [city, setCity] = useState("Paris");
   const [weather, setWeather] = useState("");
   const [logo, setLogo] = useState("");
+  const [nowDate, setNowDate] = useState("");
+
   function changedCity(event) {
     setCity(event.target.value);
   }
 
   function showWeather(response) {
+    let days = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
+    let monthes = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
     setWeather({
       cityName: response.data.name,
       weatherDescription: response.data.weather[0].main,
       minDegree: Math.round(response.data.main.temp_min),
       maxDegree: Math.round(response.data.main.temp_max),
       temeratureValue: Math.round(response.data.main.temp),
-      fullTimeValue: response.data.dt,
       humidity: response.data.main.humidity,
       wind: Math.round(response.data.wind.speed),
     });
     setLogo(require(`./images/${response.data.weather[0].main}.png`));
+    let newDate = new Date(response.data.dt * 1000);
+    let dateday = newDate.getDate();
+    let month = monthes[newDate.getMonth()];
+    let hour = newDate.getHours();
+    let minutes = newDate.getMinutes();
+    let day = days[newDate.getDay()];
+    if (hour < 10) {
+      hour = `0${hour}`;
+    }
+    if (minutes < 10) {
+      minutes = `0${minutes}`;
+    }
+    setNowDate(`${dateday} ${month}, ${day} ${hour}:${minutes}`);
   }
-
   function fahrenheit(event) {
     event.preventDefault();
     setWeather({
@@ -42,7 +78,7 @@ export default function Weather() {
 
   function sumbittedForm(event) {
     event.preventDefault();
-    let myApiKey = "5f472b7acba333cd8a035ea85a0d4d4c";
+    let myApiKey = "4a1f4bf33289372d2c983ab44f407e8c";
     let apiUrlCity = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&APPID=${myApiKey}`;
     axios.get(apiUrlCity).then(showWeather);
   }
@@ -72,7 +108,7 @@ export default function Weather() {
                     alt=""
                   />
                 </div>
-                <p className="datatime">1</p>
+                <p className="datatime">{nowDate}</p>
               </div>
               <div className="dopmeta">
                 <div className="row">
@@ -122,7 +158,11 @@ export default function Weather() {
                   onChange={changedCity}
                 />
               </form>
-              <button type="submit" className="formbtn"></button>
+              <button
+                type="submit"
+                className="formbtn"
+                onClick={sumbittedForm}
+              ></button>
             </div>
             <div className="degreeBnt d-flex justify-content-center">
               <span className="mx-3 ">
