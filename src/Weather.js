@@ -1,66 +1,49 @@
 import React, { useState } from "react";
+import Forecast from "./Forecast";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { faMagnifyingGlass, faSearch } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
+import FormattedDate from "./FormattedDate";
 library.add(faMagnifyingGlass);
 
 export default function Weather() {
-  const [city, setCity] = useState("Paris");
-  const [weather, setWeather] = useState("");
+  const [weather, setWeather] = useState({});
   const [logo, setLogo] = useState("");
-  const [nowDate, setNowDate] = useState("");
+  const [latitude, setLatitude] = useState(48.864716);
+  const [longitude, setLongitude] = useState(2.349014);
+  const [ready, setReady] = useState(false);
+  const [city, setCity] = useState("Paris");
+
+  function search() {
+    let myApiKey = "a7c0e7ad916a9fcd247e7f5c33cfcb53";
+    let apiUrlCity = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&APPID=${myApiKey}`;
+    axios.get(apiUrlCity).then(showWeather);
+  }
 
   function changedCity(event) {
     setCity(event.target.value);
   }
-
+  function sumbittedForm(event) {
+    event.preventDefault();
+    search();
+  }
   function showWeather(response) {
-    let days = [
-      "Sunday",
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-    ];
-    let monthes = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December",
-    ];
+    setReady(true);
+
     setWeather({
       cityName: response.data.name,
       weatherDescription: response.data.weather[0].main,
       minDegree: Math.round(response.data.main.temp_min),
       maxDegree: Math.round(response.data.main.temp_max),
       temeratureValue: Math.round(response.data.main.temp),
+      date: new Date(response.data.dt * 1000),
       humidity: response.data.main.humidity,
       wind: Math.round(response.data.wind.speed),
     });
     setLogo(require(`./images/${response.data.weather[0].main}.png`));
-    let newDate = new Date(response.data.dt * 1000);
-    let dateday = newDate.getDate();
-    let month = monthes[newDate.getMonth()];
-    let hour = newDate.getHours();
-    let minutes = newDate.getMinutes();
-    let day = days[newDate.getDay()];
-    if (hour < 10) {
-      hour = `0${hour}`;
-    }
-    if (minutes < 10) {
-      minutes = `0${minutes}`;
-    }
-    setNowDate(`${dateday} ${month}, ${day} ${hour}:${minutes}`);
+
+    setLatitude(response.data.coord.lat);
+    setLongitude(response.data.coord.lon);
   }
   function fahrenheit(event) {
     event.preventDefault();
@@ -76,120 +59,126 @@ export default function Weather() {
     });
   }
 
-  function sumbittedForm(event) {
-    event.preventDefault();
-    let myApiKey = "4a1f4bf33289372d2c983ab44f407e8c";
-    let apiUrlCity = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&APPID=${myApiKey}`;
-    axios.get(apiUrlCity).then(showWeather);
-  }
-
-  return (
-    <section className="Weather">
-      <div className="weather-container shadow-sm">
-        <div className="row">
-          <div className="col-sm-6">
-            <div className="glavnaya shadow-sm">
-              <h1 className="city">{weather.cityName}</h1>
-              <h2 className="weather">{weather.weatherDescription}</h2>
-              <h5 className="min-max">
-                Min: <span className="min-temp">{weather.minDegree}</span>º |
-                Max:
-                <span className="max-temp"> {weather.maxDegree}</span>º
-              </h5>
-              <div className="row">
-                <div className="col-6">
-                  <p className="temp">{weather.temeratureValue}º</p>
-                </div>
-                <div className="col-6">
-                  <img
-                    src={logo}
-                    width="130"
-                    className="mainimage img-fluid"
-                    alt=""
-                  />
-                </div>
-                <p className="datatime">{nowDate}</p>
-              </div>
-              <div className="dopmeta">
+  if (ready) {
+    return (
+      <section className="Weather">
+        <div className="weather-container shadow-sm">
+          <div className="row">
+            <div className="col-sm-6">
+              <div className="glavnaya shadow-sm">
+                <h1 className="city">{weather.cityName}</h1>
+                <h2 className="weather">{weather.weatherDescription}</h2>
+                <h5 className="min-max">
+                  Min: <span className="min-temp">{weather.minDegree}</span>º |
+                  Max:
+                  <span className="max-temp"> {weather.maxDegree}</span>º
+                </h5>
                 <div className="row">
                   <div className="col-6">
-                    <p className="humidity shadow-sm">
-                      <span className="d-flex justify-content-center">
-                        Humidity
-                      </span>
-                      <br />
-                      <em>
-                        <strong className="d-flex justify-content-center">
-                          {weather.humidity}%
-                        </strong>
-                      </em>
-                    </p>
+                    <p className="temp">{weather.temeratureValue}º</p>
                   </div>
                   <div className="col-6">
-                    <p className="wind shadow-sm">
-                      <span className="d-flex justify-content-center">
-                        Wind
-                      </span>
-                      <br />
-                      <em>
-                        <strong className="d-flex justify-content-center">
-                          {weather.wind}km/h
-                        </strong>
-                      </em>
-                    </p>
+                    <img
+                      src={logo}
+                      width="130"
+                      className="mainimage img-fluid"
+                      alt=""
+                    />
+                  </div>
+                  <p className="datatime">
+                    <FormattedDate date={weather.date} />
+                  </p>
+                </div>
+                <div className="dopmeta">
+                  <div className="row">
+                    <div className="col-6">
+                      <p className="humidity shadow-sm">
+                        <span className="d-flex justify-content-center">
+                          Humidity
+                        </span>
+                        <br />
+                        <em>
+                          <strong className="d-flex justify-content-center">
+                            {weather.humidity}%
+                          </strong>
+                        </em>
+                      </p>
+                    </div>
+                    <div className="col-6">
+                      <p className="wind shadow-sm">
+                        <span className="d-flex justify-content-center">
+                          Wind
+                        </span>
+                        <br />
+                        <em>
+                          <strong className="d-flex justify-content-center">
+                            {weather.wind}km/h
+                          </strong>
+                        </em>
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div className="col-lg-6">
-            <div className="d-flex justify-content-center currentLocationElement">
-              <button className="loc">
-                <span className="material-symbols-outlined">near_me</span>
-              </button>
-              <span className="currently">Current location</span>
+            <div className="col-sm-6">
+              <div className="row d-flex justify-content-evenly">
+                <Forecast long={longitude} lat={latitude} />
+              </div>
+              <div className="row d-flex justify-content-evenly"></div>
             </div>
-            <div className="formSearch d-flex justify-content-center">
-              <form className="search shadow" onSubmit={sumbittedForm}>
-                <input
-                  type="text"
-                  placeholder="Your city"
-                  autoComplete="off"
-                  onChange={changedCity}
-                />
-              </form>
-              <button
-                type="submit"
-                className="formbtn"
-                onClick={sumbittedForm}
-              ></button>
-            </div>
-            <div className="degreeBnt d-flex justify-content-center">
-              <span className="mx-3 ">
-                <a href="/" onClick={sumbittedForm}>
-                  <span className="material-symbols-outlined turnoffbtn">
-                    power_settings_new
+            <div className="col-lg-12">
+              <div className="d-flex justify-content-center currentLocationElement">
+                <button className="loc">
+                  <span className="material-symbols-outlined">near_me</span>
+                </button>
+                <span className="currently">Current location</span>
+              </div>
+              <div className="formSearch d-flex justify-content-center">
+                <form className="search shadow" onSubmit={sumbittedForm}>
+                  <input
+                    type="text"
+                    placeholder="Your city"
+                    autoComplete="off"
+                    onChange={changedCity}
+                  />
+                </form>
+                <button
+                  type="submit"
+                  className="formbtn"
+                  onClick={sumbittedForm}
+                ></button>
+              </div>
+              <div className="degreeBnt d-flex justify-content-center">
+                <span className="mx-3 ">
+                  <a href="/" onClick={sumbittedForm}>
+                    <span className="material-symbols-outlined turnoffbtn">
+                      power_settings_new
+                    </span>
+                  </a>
+                  <span>
+                    <strong className="fdegree">C° </strong>
                   </span>
-                </a>
-                <span>
-                  <strong className="fdegree">C° </strong>
                 </span>
-              </span>
-              <span>
-                <a href="/" onClick={fahrenheit}>
-                  <span className="material-symbols-outlined turnoffbtn">
-                    power_settings_new
-                  </span>
-                </a>
+                <span>
+                  <a href="/" onClick={fahrenheit}>
+                    <span className="material-symbols-outlined turnoffbtn">
+                      power_settings_new
+                    </span>
+                  </a>
 
-                <span>
-                  <strong className="fdegree">F°</strong>
+                  <span>
+                    <strong className="fdegree">F°</strong>
+                  </span>
                 </span>
-              </span>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
-  );
+      </section>
+    );
+  } else {
+    search();
+    return "Loading";
+  }
 }

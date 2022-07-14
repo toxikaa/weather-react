@@ -412,3 +412,111 @@ section {
     left: 10px;
   }
 }
+.forecast {
+  max-height: 220px;
+  width: 150px;
+  max-width: 530px;
+  min-width: 100px;
+  border-radius: 14px;
+  position: relative;
+  margin: 15px;
+}
+
+.forecastAll {
+  max-height: 440px;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  max-width: 100%;
+  border-radius: 14px;
+  position: relative;
+
+  background: -webkit-linear-gradient(
+    131deg,
+    rgb(143, 93, 146) 29%,
+    rgb(56, 126, 130) 88%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.forecast::before {
+  content: "";
+  position: absolute;
+  border-radius: 14px;
+
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  background-image: url(https://s3.amazonaws.com/shecodesio-production/uploads/files/000/037/434/original/background.jpg?1655377992);
+  background-size: cover;
+  opacity: 0.5;
+}
+.forecastDay {
+  position: relative;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1;
+  padding-top: 4px;
+  background: -webkit-linear-gradient(
+    131deg,
+    rgb(143, 93, 146) 29%,
+    rgb(56, 126, 130) 88%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.forecastDate {
+  position: relative;
+  font-size: 17px;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1;
+  padding-top: 4px;
+  background: -webkit-linear-gradient(
+    131deg,
+    rgb(143, 93, 146) 29%,
+    rgb(56, 126, 130) 88%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.forecastWeatherDescription {
+  position: relative;
+  font-size: 30px;
+  font-weight: 900;
+  line-height: 1;
+  padding-top: 4px;
+  background: -webkit-linear-gradient(
+    131deg,
+    rgb(143, 93, 146) 29%,
+    rgb(56, 126, 130) 88%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.forecastTemrepature {
+  position: relative;
+  font-size: 30px;
+
+  font-weight: 900;
+  line-height: 1;
+  padding-top: 4px;
+  background: -webkit-linear-gradient(
+    131deg,
+    rgb(143, 93, 146) 29%,
+    rgb(56, 126, 130) 88%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.forecastImage {
+  width: 90px;
+  position: relative;
+  opacity: 0.8;
+  transition: all 150ms ease-in-out;
+}
+.forecastImage:hover,
+.mainimage:hover {
+  opacity: 1;
+}
