@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import Forecast from "./Forecast";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faMagnifyingGlass, faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import FormattedDate from "./FormattedDate";
+import WeatherIcon from "./WeatherIcon";
+
 library.add(faMagnifyingGlass);
 
 export default function Weather() {
   const [weather, setWeather] = useState({});
-  const [logo, setLogo] = useState("");
   const [latitude, setLatitude] = useState(48.864716);
   const [longitude, setLongitude] = useState(2.349014);
   const [ready, setReady] = useState(false);
@@ -40,23 +41,9 @@ export default function Weather() {
       humidity: response.data.main.humidity,
       wind: Math.round(response.data.wind.speed),
     });
-    setLogo(require(`./images/${response.data.weather[0].main}.png`));
 
     setLatitude(response.data.coord.lat);
     setLongitude(response.data.coord.lon);
-  }
-  function fahrenheit(event) {
-    event.preventDefault();
-    setWeather({
-      cityName: weather.cityName,
-      weatherDescription: weather.weatherDescription,
-      minDegree: Math.round((weather.minDegree * 9) / 5 + 32),
-      maxDegree: Math.round((weather.maxDegree * 9) / 5 + 32),
-      temeratureValue: Math.round((weather.temeratureValue * 9) / 5 + 32),
-      fullTimeValue: weather.fullTimeValue,
-      humidity: weather.humidity,
-      wind: weather.wind,
-    });
   }
 
   if (ready) {
@@ -78,12 +65,7 @@ export default function Weather() {
                     <p className="temp">{weather.temeratureValue}º</p>
                   </div>
                   <div className="col-6">
-                    <img
-                      src={logo}
-                      width="130"
-                      className="mainimage img-fluid"
-                      alt=""
-                    />
+                    <WeatherIcon code={weather.weatherDescription} />
                   </div>
                   <p className="datatime">
                     <FormattedDate date={weather.date} />
@@ -123,9 +105,13 @@ export default function Weather() {
             </div>
             <div className="col-sm-6">
               <div className="row d-flex justify-content-evenly">
-                <Forecast long={longitude} lat={latitude} />
+                <Forecast long={longitude} lat={latitude} code={0} />
+                <Forecast long={longitude} lat={latitude} code={1} />
               </div>
-              <div className="row d-flex justify-content-evenly"></div>
+              <div className="row d-flex justify-content-evenly">
+                <Forecast long={longitude} lat={latitude} code={2} />
+                <Forecast long={longitude} lat={latitude} code={3} />
+              </div>
             </div>
             <div className="col-lg-12">
               <div className="d-flex justify-content-center currentLocationElement">
@@ -161,7 +147,7 @@ export default function Weather() {
                   </span>
                 </span>
                 <span>
-                  <a href="/" onClick={fahrenheit}>
+                  <a href="/">
                     <span className="material-symbols-outlined turnoffbtn">
                       power_settings_new
                     </span>

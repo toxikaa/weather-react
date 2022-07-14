@@ -453,8 +453,8 @@ section {
 }
 .forecastDay {
   position: relative;
-  font-size: 20px;
-  font-weight: 700;
+  font-size: 30px;
+  font-weight: 400;
   line-height: 1;
   padding-top: 4px;
   background: -webkit-linear-gradient(
