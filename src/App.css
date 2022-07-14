@@ -81,9 +81,6 @@
   padding-left: 20px;
   right: 10px;
 }
-.degreeSymb {
-  font-size: 60px;
-}
 
 body {
   font-family: "Padauk", sans-serif;
@@ -187,57 +184,7 @@ input:hover {
 .loc:hover {
   opacity: 0.6;
 }
-.turnoffbtn {
-  border: none;
 
-  transition: all 200ms ease;
-  position: relative;
-  filter: contrast(80%);
-  background: -webkit-linear-gradient(
-    166deg,
-    rgb(143, 93, 146) 29%,
-    rgb(56, 126, 130) 88%
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.f-degree-btn {
-  position: flex;
-  padding-left: 5px;
-}
-.degreeBnt {
-  margin-left: 5px;
-}
-.turnoffbtn:hover {
-  opacity: 0.6;
-}
-.turnoffbtnActive {
-  background-color: transparent;
-
-  border: none;
-
-  transition: all 200ms ease;
-  position: relative;
-  filter: contrast(80%);
-  background: -webkit-linear-gradient(-20deg, #d558c8 0%, #24d292 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-.fdegree {
-  font-size: 23px;
-  position: relative;
-  padding-right: 15px;
-  top: -5px;
-
-  background: -webkit-linear-gradient(
-    166deg,
-    rgb(143, 93, 146) 29%,
-    rgb(56, 126, 130) 88%
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
 .wind,
 .humidity {
   border: 1px solid #6c476e03;
@@ -268,25 +215,6 @@ section {
   justify-content: center;
 }
 
-.bottom {
-  text-align: center;
-  position: relative;
-}
-.linkBottom {
-  text-decoration: none;
-  font-weight: 800;
-  font-family: "Space Grotesk", sans-serif;
-  background: -webkit-linear-gradient(
-    178deg,
-    rgb(252, 115, 156) 0%,
-    rgb(139, 102, 241) 100%
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-.linkBottom:hover {
-  opacity: 0.6;
-}
 .min-max {
   text-align: center;
   font-weight: 900;
@@ -422,22 +350,6 @@ section {
   margin: 15px;
 }
 
-.forecastAll {
-  max-height: 440px;
-  margin-top: 15px;
-  margin-bottom: 10px;
-  max-width: 100%;
-  border-radius: 14px;
-  position: relative;
-
-  background: -webkit-linear-gradient(
-    131deg,
-    rgb(143, 93, 146) 29%,
-    rgb(56, 126, 130) 88%
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
 .forecast::before {
   content: "";
   position: absolute;
@@ -465,21 +377,7 @@ section {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-.forecastDate {
-  position: relative;
-  font-size: 17px;
-  font-style: italic;
-  font-weight: 400;
-  line-height: 1;
-  padding-top: 4px;
-  background: -webkit-linear-gradient(
-    131deg,
-    rgb(143, 93, 146) 29%,
-    rgb(56, 126, 130) 88%
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
+
 .forecastWeatherDescription {
   position: relative;
   font-size: 30px;
@@ -519,4 +417,22 @@ section {
 .forecastImage:hover,
 .mainimage:hover {
   opacity: 1;
+}
+.footer {
+  text-align: center;
+}
+a {
+  text-decoration: none;
+  font-weight: 800;
+  font-family: "Space Grotesk", sans-serif;
+  background: -webkit-linear-gradient(
+    178deg,
+    rgb(252, 115, 156) 0%,
+    rgb(139, 102, 241) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+a:hover {
+  opacity: 0.6;
 }
