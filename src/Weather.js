@@ -152,7 +152,7 @@ export default function Weather() {
             </a>
             and hosted on
             <a
-              href="https://github.com/toxikaa/weather-react"
+              href="https://dreamy-manatee-6c5cb2.netlify.app/"
               target="_blank"
               rel="noopener noreferrer"
             >
