@@ -141,24 +141,22 @@ export default function Weather() {
           </div>
         </section>
         <div className="footer">
-          <p>
-            Coded by Ksenia. Open sourced on
-            <a
-              href="https://github.com/toxikaa/weather-react"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              GitHub
-            </a>
-            and hosted on
-            <a
-              href="https://dreamy-manatee-6c5cb2.netlify.app/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Netlify
-            </a>
-          </p>
+          Coded by Ksenia. Open sourced on{" "}
+          <a
+            href="https://github.com/toxikaa/weather-react"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            GitHub
+          </a>{" "}
+          and hosted on{" "}
+          <a
+            href="https://dreamy-manatee-6c5cb2.netlify.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Netlify
+          </a>
         </div>
       </span>
     );
