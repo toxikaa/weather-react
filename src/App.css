@@ -1,38 +1,414 @@
-.App {
+.glavnaya {
+  padding: 10px 0;
+  max-width: 330px;
+  min-width: 330px;
+  width: 100%;
+  border-radius: 14px;
+  margin: 15px auto;
+  position: relative;
+}
+.glavnaya::before {
+  content: "";
+  position: absolute;
+  border-radius: 14px;
+
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  background-image: url(https://s3.amazonaws.com/shecodesio-production/uploads/files/000/037/434/original/background.jpg?1655377992);
+  background-size: cover;
+  opacity: 0.5;
+}
+
+.city {
   text-align: center;
+  font-size: 60px;
+  margin: 0 auto;
+  color: #6c476e;
+  position: relative;
+  font-family: "Space Grotesk", sans-serif;
+  background: -webkit-linear-gradient(
+    178deg,
+    rgb(252, 115, 156) 0%,
+    rgb(139, 102, 241) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.weather {
+  text-align: center;
+  font-size: 45px;
+
+  font-weight: 700;
+  color: #a45c5c;
+  position: relative;
+  font-family: "Space Grotesk", sans-serif;
+  background: -webkit-linear-gradient(
+    178deg,
+    rgb(252, 115, 156) 0%,
+    rgb(139, 102, 241) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+.temp {
+  font-size: 86px;
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  font-weight: 700;
+  margin: 0;
+  position: relative;
+  font-family: "Space Grotesk", sans-serif;
+  background: -webkit-linear-gradient(
+    178deg,
+    rgb(252, 115, 156) 0%,
+    rgb(139, 102, 241) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  padding-left: 20px;
+  right: -30px;
 }
 
-.App-link {
-  color: #61dafb;
+.mainimage {
+  position: relative;
+  opacity: 0.8;
+  float: center;
+  padding-top: 6px;
+  padding-left: 20px;
+  right: 10px;
+}
+.degreeSymb {
+  font-size: 60px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+body {
+  font-family: "Padauk", sans-serif;
+}
+
+.weather-container {
+  max-width: 1100px;
+  display: flex;
+  justify-content: center;
+
+  border: 1px solid #6c476e0d;
+  border-radius: 40px;
+  padding: 50px 15px;
+
+  background: rgba(255, 255, 255, 0.6);
+}
+.datatime {
+  text-align: center;
+  font-size: 25px;
+  padding-top: 25px;
+  position: relative;
+
+  background: -webkit-linear-gradient(
+    131deg,
+    rgb(143, 93, 146) 29%,
+    rgb(56, 126, 130) 88%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+form {
+  position: relative;
+  width: 380px;
+  border: 1px solid #6c476e0d;
+  right: -21px;
+}
+input,
+.formbtn {
+  border: none;
+  outline: none;
+  background: transparent;
+}
+input {
+  width: 100%;
+  height: 42px;
+  padding-left: 15px;
+  color: #2c6063;
+}
+input:hover {
+  opacity: 0.6;
+}
+.formbtn {
+  height: 32px;
+  width: 32px;
+  position: relative;
+  right: 16px;
+  top: 8px;
+  cursor: pointer;
+  transition: all 250ms ease;
+  color: rgb(143, 93, 146);
+  opacity: 0.5;
+}
+.formbtn:hover {
+  opacity: 0.2;
+}
+
+.formbtn:before {
+  content: url(./search.svg);
+
+  font-size: 22px;
+  color: rgb(143, 93, 146);
+}
+
+.currently {
+  position: flex;
+
+  background: -webkit-linear-gradient(
+    166deg,
+    rgb(143, 93, 146) 29%,
+    rgb(56, 126, 130) 88%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.loc {
+  position: flex;
+  border: none;
+  background-color: transparent;
+  transition: all 200ms ease;
+  filter: contrast(100%);
+  background: -webkit-linear-gradient(
+    166deg,
+    rgb(143, 93, 146) 29%,
+    rgb(56, 126, 130) 88%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.loc:hover {
+  opacity: 0.6;
+}
+.turnoffbtn {
+  border: none;
+
+  transition: all 200ms ease;
+  position: relative;
+  filter: contrast(80%);
+  background: -webkit-linear-gradient(
+    166deg,
+    rgb(143, 93, 146) 29%,
+    rgb(56, 126, 130) 88%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.f-degree-btn {
+  position: flex;
+  padding-left: 5px;
+}
+.degreeBnt {
+  margin-left: 5px;
+}
+.turnoffbtn:hover {
+  opacity: 0.6;
+}
+.turnoffbtnActive {
+  background-color: transparent;
+
+  border: none;
+
+  transition: all 200ms ease;
+  position: relative;
+  filter: contrast(80%);
+  background: -webkit-linear-gradient(-20deg, #d558c8 0%, #24d292 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.fdegree {
+  font-size: 23px;
+  position: relative;
+  padding-right: 15px;
+  top: -5px;
+
+  background: -webkit-linear-gradient(
+    166deg,
+    rgb(143, 93, 146) 29%,
+    rgb(56, 126, 130) 88%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.wind,
+.humidity {
+  border: 1px solid #6c476e03;
+  border-radius: 7px;
+  margin: 0 35px;
+  padding: 10px 15px;
+  position: relative;
+  line-height: 0.7;
+  background: -webkit-linear-gradient(
+    166deg,
+    rgb(143, 93, 146) 29%,
+    rgb(56, 126, 130) 88%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.wind {
+  right: 35px;
+}
+.humidity {
+  left: 35px;
+}
+section {
+  background: url(https://s3.amazonaws.com/shecodesio-production/uploads/files/000/037/434/original/background.jpg?1655377992);
+  border-radius: 40px;
+  padding: 30px 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.bottom {
+  text-align: center;
+  position: relative;
+}
+.linkBottom {
+  text-decoration: none;
+  font-weight: 800;
+  font-family: "Space Grotesk", sans-serif;
+  background: -webkit-linear-gradient(
+    178deg,
+    rgb(252, 115, 156) 0%,
+    rgb(139, 102, 241) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.linkBottom:hover {
+  opacity: 0.6;
+}
+.min-max {
+  text-align: center;
+  font-weight: 900;
+  background: -webkit-linear-gradient(
+    166deg,
+    rgb(143, 93, 146) 29%,
+    rgb(56, 126, 130) 88%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: relative;
+  margin: 0;
+}
+.degreeBnt {
+  margin-top: 15px;
+  font-size: 25px;
+}
+.currentLocationElement {
+  font-size: 20px;
+  padding-top: 20px;
+}
+@media (max-width: 500px) {
+  .temp {
+    font-size: 85px;
   }
-  to {
-    transform: rotate(360deg);
+  .weather-container {
+    width: 360px;
+  }
+  form {
+    width: 340px;
+  }
+}
+@media (max-width: 350px) {
+  .temp {
+    font-size: 85px;
+  }
+  .weather-container {
+    width: 300px;
+  }
+  form {
+    width: 240px;
+  }
+  .glavnaya {
+    max-width: 240px;
+    min-width: 240px;
+  }
+  .temp {
+    font-size: 57px;
+    top: 10px;
+    left: 20px;
+  }
+  .mainimage {
+    width: 110px;
+    right: 20px;
+  }
+  .wind,
+  .humidity {
+    padding: 5px 20px;
+    margin: 0 20px;
+  }
+  .wind {
+    left: -10px;
+  }
+  .humidity {
+    left: 10px;
+  }
+}
+@media (max-width: 320px) {
+  .weather-container {
+    width: 300px;
+  }
+  form {
+    width: 280px;
+  }
+  .glavnaya {
+    max-width: 280px;
+    min-width: 280px;
+  }
+  .temp {
+    font-size: 69px;
+  }
+  .wind,
+  .humidity {
+    padding: 5px 20px;
+    margin: 0 20px;
+  }
+  .wind {
+    left: -10px;
+  }
+  .humidity {
+    left: 10px;
+  }
+}
+@media (max-width: 300px) {
+  .weather-container {
+    width: 260px;
+  }
+  form {
+    width: 240px;
+  }
+  .glavnaya {
+    max-width: 240px;
+    min-width: 240px;
+  }
+  .temp {
+    font-size: 57px;
+    top: 10px;
+    left: 20px;
+  }
+  .mainimage {
+    width: 110px;
+    right: 20px;
+  }
+  .wind,
+  .humidity {
+    padding: 0 20px;
+    margin: 0 20px;
+  }
+  .wind {
+    left: -10px;
+  }
+  .humidity {
+    left: 10px;
   }
 }
