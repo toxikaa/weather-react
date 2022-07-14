@@ -7,7 +7,7 @@ library.add(faMagnifyingGlass);
 export default function Weather() {
   const [city, setCity] = useState("Paris");
   const [weather, setWeather] = useState("");
-  const [icon, setIcon] = useState("");
+  const [logo, setLogo] = useState("");
   function changedCity(event) {
     setCity(event.target.value);
   }
@@ -23,7 +23,7 @@ export default function Weather() {
       humidity: response.data.main.humidity,
       wind: Math.round(response.data.wind.speed),
     });
-    setIcon(`"./${response.data.weather[0].main}.png"`);
+    setLogo(require(`./images/${response.data.weather[0].main}.png`));
   }
 
   function fahrenheit(event) {
@@ -66,7 +66,7 @@ export default function Weather() {
                 </div>
                 <div className="col-6">
                   <img
-                    src=""
+                    src={logo}
                     width="130"
                     className="mainimage img-fluid"
                     alt=""
