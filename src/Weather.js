@@ -48,7 +48,7 @@ export default function Weather() {
 
   if (ready) {
     return (
-      <span className="Weather">
+      <span>
         <section className="Weather">
           <div className="weather-container shadow-sm">
             <div className="row">
@@ -136,6 +136,29 @@ export default function Weather() {
                     onClick={sumbittedForm}
                   ></button>
                 </div>
+                <div className="degreeBnt d-flex justify-content-center">
+                  <span className="mx-3 ">
+                    <a href="/" onClick={sumbittedForm}>
+                      <span className="material-symbols-outlined turnoffbtn">
+                        power_settings_new
+                      </span>
+                    </a>
+                    <span>
+                      <strong className="fdegree">C° </strong>
+                    </span>
+                  </span>
+                  <span>
+                    <a href="/">
+                      <span className="material-symbols-outlined turnoffbtn">
+                        power_settings_new
+                      </span>
+                    </a>
+
+                    <span>
+                      <strong className="fdegree">F°</strong>
+                    </span>
+                  </span>
+                </div>
               </div>
             </div>
           </div>
@@ -157,6 +180,25 @@ export default function Weather() {
           >
             Netlify
           </a>
+          <p>
+            Coded by Ksenia. Open sourced on
+            <a
+              href="https://github.com/toxikaa/weather-react"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              GitHub
+            </a>
+            and hosted on
+            <a
+              href="https://github.com/toxikaa/weather-react"
+              href="https://dreamy-manatee-6c5cb2.netlify.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Netlify
+            </a>
+          </p>
         </div>
       </span>
     );
