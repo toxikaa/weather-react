@@ -19,7 +19,7 @@ export default function Forecast(props) {
   if (ready) {
     return <ForecastDay date={days} />;
   } else {
-    let myApiKey = "5f472b7acba333cd8a035ea85a0d4d4c";
+    let myApiKey = "36a53e725b563939fbe0897565775163";
     let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${props.lat}&lon=${props.long}&units=metric&appid=${myApiKey}`;
     axios.get(apiUrl).then(showForecast);
     return null;

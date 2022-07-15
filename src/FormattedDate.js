@@ -24,15 +24,9 @@ export default function FormattedDate(props) {
   ];
   let dateday = props.date.getDate();
   let month = monthes[props.date.getMonth()];
-  let hour = props.date.getHours();
-  let minutes = props.date.getMinutes();
+
   let day = days[props.date.getDay()];
-  if (hour < 10) {
-    hour = `0${hour}`;
-  }
-  if (minutes < 10) {
-    minutes = `0${minutes}`;
-  }
-  let formattedDate = `${dateday} ${month}, ${day} ${hour}:${minutes}`;
+
+  let formattedDate = `${dateday} ${month}, ${day}`;
   return formattedDate;
 }

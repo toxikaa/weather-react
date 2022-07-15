@@ -5,18 +5,19 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import FormattedDate from "./FormattedDate";
 import WeatherIcon from "./WeatherIcon";
+import CurrentLocation from "./CurrentLocation";
 
 library.add(faMagnifyingGlass);
 
 export default function Weather() {
   const [weather, setWeather] = useState({});
-  const [latitude, setLatitude] = useState(48.864716);
-  const [longitude, setLongitude] = useState(2.349014);
+  const [latitude, setLatitude] = useState("");
+  const [longitude, setLongitude] = useState("");
   const [ready, setReady] = useState(false);
   const [city, setCity] = useState("Paris");
 
   function search() {
-    let myApiKey = "a7c0e7ad916a9fcd247e7f5c33cfcb53";
+    let myApiKey = "36a53e725b563939fbe0897565775163";
     let apiUrlCity = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&APPID=${myApiKey}`;
     axios.get(apiUrlCity).then(showWeather);
   }
@@ -106,21 +107,15 @@ export default function Weather() {
               </div>
               <div className="col-sm-6">
                 <div className="row d-flex justify-content-evenly">
-                  <Forecast long={longitude} lat={latitude} code={0} />
-                  <Forecast long={longitude} lat={latitude} code={1} />
-                </div>
-                <div className="row d-flex justify-content-evenly">
                   <Forecast long={longitude} lat={latitude} code={2} />
                   <Forecast long={longitude} lat={latitude} code={3} />
                 </div>
+                <div className="row d-flex justify-content-evenly">
+                  <Forecast long={longitude} lat={latitude} code={4} />
+                  <Forecast long={longitude} lat={latitude} code={5} />
+                </div>
               </div>
               <div className="col-lg-12">
-                <div className="d-flex justify-content-center currentLocationElement">
-                  <button className="loc">
-                    <span className="material-symbols-outlined">near_me</span>
-                  </button>
-                  <span className="currently">Current location</span>
-                </div>
                 <div className="formSearch d-flex justify-content-center">
                   <form className="search shadow" onSubmit={sumbittedForm}>
                     <input
