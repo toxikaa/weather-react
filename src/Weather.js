@@ -1,13 +1,8 @@
 import React, { useState } from "react";
 import Forecast from "./Forecast";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import FormattedDate from "./FormattedDate";
 import WeatherIcon from "./WeatherIcon";
-import CurrentLocation from "./CurrentLocation";
-
-library.add(faMagnifyingGlass);
 
 export default function Weather() {
   const [weather, setWeather] = useState({});
