@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function WeatherIcon(props) {
-  let images = require(`./images/${props.code}.png`);
+  let images = `./images/${props.code}.png`;
   return (
     <img
       src={images}
