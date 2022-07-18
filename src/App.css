@@ -152,7 +152,7 @@ input:hover {
 }
 
 .formbtn:before {
-  content: url(./search.svg);
+  content: url(search.svg);
 
   font-size: 22px;
   color: rgb(143, 93, 146);
